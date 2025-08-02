@@ -66,6 +66,19 @@ const header = (
   </header >
 )
 
+const form = (
+  <form className='form-wrapper' action="http://localhost:3000/">
+    <h1>Per informaizoni clicca il tasto del form.</h1>
+    <p>Scrivimi</p>
+    <div className='div-style'>
+      <input className='pd-input' type="text" placeholder="Nome" />
+      <input className='pd-input' type="text" placeholder="Cognome" />
+      <input className='pd-input' type="text" placeholder="Email" />
+    </div>
+    <button type="submit">CLICCA QUI</button>
+  </form>
+)
+
 // const mainStyle = { backgroundColor: 'red' }
 const main = (
   // <main style={mainStyle}>
@@ -77,10 +90,12 @@ const main = (
         <li>Calcolo: {numOne} + {numTwo} = {numOne + numTwo}</li>
       </ul>
     </div>
+    {form}
   </main>
 )
 
-// const footerStyle = { backgroundColor: 'blue', color: 'yellow' }
+
+// const footerStyle = {backgroundColor: 'blue', color: 'yellow' }
 const footer = (
   // <footer style={footerStyle}>
   <footer>
