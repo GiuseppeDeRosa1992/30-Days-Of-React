@@ -50,21 +50,39 @@ const techsFormatted = techs.map((tech) => <li key={tech}>{tech}</li>)
  )
 
 O COSI */
-// const headerStyle = { backgroundColor: 'lightblue', color: 'black', fontSize: '15px' }
-const header = (
-  // <header style={headerStyle}>
-  <header>
-    <div className='header-wrapper'>
-      <h1>{title}</h1>
-      {user}
-      <h2>{subtitle}</h2>
-      <h3>{languageUsed}</h3>
-      <p>Autore: {author.firstName} {author.lastName}</p>
-      {etàPersonale}
-      <h5>{date}</h5>
-    </div>
-  </header >
-)
+// const headerStyle = { backgroundColor: 'lightblue', color: 'black', fontSize: '15px' }  COSI SENZA PROPS
+// const header = (
+//   // <header style={headerStyle}>
+//   <header>
+//     <div className='header-wrapper'>
+//       <h1>{title}</h1>
+//       {user}
+//       <h2>{subtitle}</h2>
+//       <h3>{languageUsed}</h3>
+//       <p>Autore: {author.firstName} {author.lastName}</p>
+//       {etàPersonale}
+//       <h5>{date}</h5>
+//     </div>
+//   </header >
+// )
+
+//COSI CON PROPS
+const Header = (props) => {
+  return (
+    // <header style={headerStyle}>
+    <header>
+      <div className='header-wrapper'>
+        <h1>{props.title}</h1>
+        {props.user}
+        <h2>{props.subtitle}</h2>
+        <h3>{props.languageUsed}</h3>
+        <p>Autore: {props.author.firstName} {props.author.lastName}</p>
+        {props.etàPersonale}
+        <h5>{props.date}</h5>
+      </div>
+    </header >
+  )
+}
 
 const form = (
   <form className='form-wrapper' action="http://localhost:3000/">
@@ -105,12 +123,22 @@ const footer = (
   </footer>
 )
 
-const app = (
-  <div>
-    {header}
-    {main}
-    {footer}
-  </div>
-)
+const App = () => {
+  return (
+    <div className='app'>
+      <Header
+        title={title}
+        user={user}
+        subtitle={subtitle}
+        languageUsed={languageUsed}
+        author={author}
+        etàPersonale={etàPersonale}
+        date={date}
+      />
+      {main}
+      {footer}
+    </div>
+  )
+}
 //non più ReactDom ma root la variabile che abbiamo definito sopra
-root.render(app)
+root.render(<App />)
