@@ -36,6 +36,10 @@ const numOne = 2
 const numTwo = 3
 const techs = ["HTML", "CSS", "JavaScript"]
 const techsFormatted = techs.map((tech) => <li key={tech}>{tech}</li>)
+const text = "CLICCA QUI"
+//creo costante usercard e gli passo l'oggetto che poi mi serve nella props ...author mi serve per recuperare i dati di un'altra costante quella sopra (...spred operator)
+const usercard = { ...author, image: imgGiuseppe }
+
 
 //creo variabile per HEADER
 /*SE METTO LO STYLE POSSO FARE COSI
@@ -66,6 +70,15 @@ O COSI */
 //   </header >
 // )
 
+//PROPS BUTTON
+const Button = (props) => {
+  return (
+    <div style={{ textAlign: 'center', paddingTop: '20px' }}>
+      <button onClick={props.onClick}>{props.text}</button>
+    </div>
+  )
+}
+
 //COSI CON PROPS
 const Header = (props) => {
   return (
@@ -93,7 +106,7 @@ const form = (
       <input className='pd-input' type="text" placeholder="Cognome" />
       <input className='pd-input' type="text" placeholder="Email" />
     </div>
-    <button type="submit">CLICCA QUI</button>
+    <button type="submit">{text}</button>
   </form>
 )
 
@@ -112,6 +125,16 @@ const main = (
   </main>
 )
 
+// CREO LA COSTANTE USERCARD COME PROPS GLI PASSO UN OGGETTO E DOPO PASSO TUTTO IN CONST APP COME COMPONENTE I DATI DELLE PROPS LI PRENDE DA SOPRA NELLA CONST usercard
+const UserCard = ({ usercard: { firstName, lastName, image } }) => (
+  <div className='user-card'>
+    <img width="300px" src={image} alt={firstName} />
+    <h2>
+      {firstName} {lastName}
+    </h2>
+  </div>
+)
+
 
 // const footerStyle = {backgroundColor: 'blue', color: 'yellow' }
 const footer = (
@@ -124,8 +147,16 @@ const footer = (
 )
 
 const App = () => {
+  const sayHi = () => {
+    alert('Hi')
+  }
+
+  const greetPeople = () => {
+    alert('Ciao benvenuto in React che ti fa uscire di testa')
+  }
   return (
     <div className='app'>
+      {/* LA PRIMA è LA CHIAVE DELLA PROPS CHE è UGUALE AL VALORE DELLA COSTANTE */}
       <Header
         title={title}
         user={user}
@@ -135,7 +166,30 @@ const App = () => {
         etàPersonale={etàPersonale}
         date={date}
       />
+      {/* COSì SERVE LA FUZNIONE SOPRA INVECE NEL BUTTON SOTTO FA LA FUZNIONE CHE RESTITUISCE UN ALERT DIRETTAMENTE DENTRO IL BUTTON
+      <Button
+        onClick={sayHi}
+        text={text}
+      /> */}
+      <Button
+        onClick={() => alert('Hi')}
+        text={text}
+      />
+      {/* ESEMPIO CON FUNZIONE PRESA DA SOPRA DALLA CONST GREETPEOPLE */}
+      <Button
+        text='Greet People'
+        onClick={greetPeople}
+      />
+      {/* QUI INVECE ESEMPIO DI FUZNIONE DIRETTAMENTE IN ON CLICK */}
+      <Button
+        text='Show Time'
+        onClick={() => alert(new Date())}
+      />
       {main}
+      {/* CREO LA CONST USERCARD E NELLA PROPS GLI PASSO LE PROPS COME UN ARRAY usercard VEDERE SOPRA LA CONST USERCARD */}
+      <UserCard
+        usercard={usercard}
+      />
       {footer}
     </div>
   )
