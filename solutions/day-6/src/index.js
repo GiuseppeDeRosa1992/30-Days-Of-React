@@ -4,6 +4,7 @@
 import React from 'react'
 //da react 19 invece di import reactdom ci vuole import {createRoot} con questo from
 import { createRoot } from 'react-dom/client'
+import style from './style/style.css'
 import header from './components/Header.js'
 import main from './components/Main.js'
 import footer from './components/Footer.js'
